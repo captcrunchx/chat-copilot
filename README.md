@@ -95,13 +95,12 @@ You will need the following items to run the sample:
 3. Configure Chat Copilot.
 
    ```bash
-   ./Configure.sh --aiservice {AI_SERVICE} --apikey {API_KEY} --endpoint {AZURE_OPENAI_ENDPOINT}
+   ./Configure.sh --aiservice AzureOpenAI --apikey 31a3bea5a6814ca79f517c9139207769 --endpoint https://fite-nug-jxv5uhcpzxwm4.openai.azure.com/ --completionmodel gpt-35-turbo --embeddingmodel text-embedding-ada-002 --plannermodel gpt-35-turbo
    ```
 
    - `AI_SERVICE`: `AzureOpenAI` or `OpenAI`.
    - `API_KEY`: The `API key` for Azure OpenAI or for OpenAI.
    - `AZURE_OPENAI_ENDPOINT`: The Azure OpenAI resource `Endpoint` address. Omit `--endpoint` if using OpenAI.
-
 
    - > **IMPORTANT:** For `AzureOpenAI`, if you deployed models `gpt-35-turbo` and `text-embedding-ada-002` with custom names (instead of each own's given name), also use the parameters:
 
@@ -131,12 +130,13 @@ By default, Chat Copilot runs locally without authentication, using a guest user
 ### Instructions
 
 1. Create an [application registration](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app) for the frontend web app, using the values below
-    - `Supported account types`: "_Accounts in this organizational directory only ({YOUR TENANT} only - Single tenant)_"
-    - `Redirect URI (optional)`: _Single-page application (SPA)_ and use _http://localhost:3000_.
+
+   - `Supported account types`: "_Accounts in this organizational directory only ({YOUR TENANT} only - Single tenant)_"
+   - `Redirect URI (optional)`: _Single-page application (SPA)_ and use _http://localhost:3000_.
 
 2. Create a second [application registration](https://learn.microsoft.com/azure/active-directory/develop/quickstart-register-app) for the backend web api, using the values below:
-    - `Supported account types`: "_Accounts in this organizational directory only ({YOUR TENANT} only - Single tenant)_"
-    - Do **not** configure a `Redirect URI (optional)`
+   - `Supported account types`: "_Accounts in this organizational directory only ({YOUR TENANT} only - Single tenant)_"
+   - Do **not** configure a `Redirect URI (optional)`
 
 > NOTE: Other account types can be used to allow multitenant and personal Microsoft accounts to use your application if you desire. Doing so may result in more users and therefore higher costs.
 
@@ -182,38 +182,39 @@ By default, Chat Copilot runs locally without authentication, using a guest user
 
 5. Run the Configure script with additional parameters to set up authentication.
 
-    **Powershell**
+   **Powershell**
 
-    ```powershell
-    .\Configure.ps1 -AiService {AI_SERVICE} -APIKey {API_KEY} -Endpoint {AZURE_OPENAI_ENDPOINT} -FrontendClientId {FRONTEND_APPLICATION_ID} -BackendClientId {BACKEND_APPLICATION_ID} -TenantId {TENANT_ID} -Instance {AZURE_AD_INSTANCE}
-    ```
+   ```powershell
+   .\Configure.ps1 -AiService {AI_SERVICE} -APIKey {API_KEY} -Endpoint {AZURE_OPENAI_ENDPOINT} -FrontendClientId {FRONTEND_APPLICATION_ID} -BackendClientId {BACKEND_APPLICATION_ID} -TenantId {TENANT_ID} -Instance {AZURE_AD_INSTANCE}
+   ```
 
-    **Bash**
-    ```bash
-    ./Configure.sh --aiservice {AI_SERVICE} --apikey {API_KEY} --endpoint {AZURE_OPENAI_ENDPOINT} --frontend-clientid {FRONTEND_APPLICATION_ID} --backend-clientid {BACKEND_APPLICATION_ID} --tenantid {TENANT_ID} --instance {AZURE_AD_INSTANCE}
-    ```
+   **Bash**
 
-    - `AI_SERVICE`: `AzureOpenAI` or `OpenAI`.
-    - `API_KEY`: The `API key` for Azure OpenAI or for OpenAI.
-    - `AZURE_OPENAI_ENDPOINT`: The Azure OpenAI resource `Endpoint` address. Omit `-Endpoint` if using OpenAI.
-    - `FRONTEND_APPLICATION_ID`: The `Application (client) ID` associated with the application registration for the frontend.
-    - `BACKEND_APPLICATION_ID`: The `Application (client) ID` associated with the application registration for the backend.
-    - `TENANT_ID` : Your Azure AD tenant ID
-    - `AZURE_AD_INSTANCE` _(optional)_: The Azure AD cloud instance for the authenticating users. Defaults to `https://login.microsoftonline.com`.
+   ```bash
+   ./Configure.sh --aiservice {AI_SERVICE} --apikey {API_KEY} --endpoint {AZURE_OPENAI_ENDPOINT} --frontend-clientid {FRONTEND_APPLICATION_ID} --backend-clientid {BACKEND_APPLICATION_ID} --tenantid {TENANT_ID} --instance {AZURE_AD_INSTANCE}
+   ```
+
+   - `AI_SERVICE`: `AzureOpenAI` or `OpenAI`.
+   - `API_KEY`: The `API key` for Azure OpenAI or for OpenAI.
+   - `AZURE_OPENAI_ENDPOINT`: The Azure OpenAI resource `Endpoint` address. Omit `-Endpoint` if using OpenAI.
+   - `FRONTEND_APPLICATION_ID`: The `Application (client) ID` associated with the application registration for the frontend.
+   - `BACKEND_APPLICATION_ID`: The `Application (client) ID` associated with the application registration for the backend.
+   - `TENANT_ID` : Your Azure AD tenant ID
+   - `AZURE_AD_INSTANCE` _(optional)_: The Azure AD cloud instance for the authenticating users. Defaults to `https://login.microsoftonline.com`.
 
 6. Run Chat Copilot locally. This step starts both the backend API and frontend application.
 
-    **Powershell**
+   **Powershell**
 
-    ```powershell
-    .\Start.ps1
-    ```
+   ```powershell
+   .\Start.ps1
+   ```
 
-    **Bash**
+   **Bash**
 
-    ```bash
-    ./Start.sh
-     ```
+   ```bash
+   ./Start.sh
+   ```
 
 # Troubleshooting
 
